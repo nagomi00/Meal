@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Meal</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <script src="https://kit.fontawesome.com/1120a2eb29.js"  crossorigin="anonymous"></script> 
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <header>
+   <h1>食品ロス</h1>
+   <div class="header-list">
+    <ul>
+     <% if user_signed_in? %>
+      <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+
+     <% else %>
+      <li><%= link_to "新規登録", new_user_registration_path %></li>
+      <li><%= link_to "ログイン", new_user_session_path %></li>
+     <% end %>
+
+     <li><%= link_to "ホーム", root_path %></li>
+    </ul>
+   </div>
+  </header>
+  <main>
+   <%= yield %>
+  </main>
+  <footer>
+      <p>Copyright © GeekSalon All Rights Reserved.</p>
+    </footer>
+ </body>
+</html>
