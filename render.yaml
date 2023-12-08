@@ -1,0 +1,22 @@
+databases:
+  - name: shokuhinnrosu_DB
+    databaseName: shokuhinnrosu_db
+    user: shokuhinnrosu
+    region: singapore
+
+services:
+  - type: web
+    name: shokuhinnrosu
+    env: ruby
+    region: singapore
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: shokuhinnrosu_DB
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+
